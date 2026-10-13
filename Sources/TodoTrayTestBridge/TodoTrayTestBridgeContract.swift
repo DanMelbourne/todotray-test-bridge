@@ -23,6 +23,13 @@ public enum TodoTrayTestBridgeContract {
     /// preview panels. Called from the teardown trap, including on failure.
     public static let resetProbeName = "ui-reset"
 
+    /// The contract number `GET /probe` reports as `contractVersion`. An integer,
+    /// raised only when a bridge that followed the previous contract would now
+    /// fail (a new required probe, a changed answer); an optional probe never
+    /// raises it. todotray-ui-driver accepts this number and the one before it.
+    /// 0.1.x predates the field and counts as 1, so the first release to send it still says 1.
+    public static let contractVersion = 1
+
     /// Every probe an adopting app must answer.
     public static let requiredProbeNames = [hermeticLaunchProbeName, resetProbeName]
 
