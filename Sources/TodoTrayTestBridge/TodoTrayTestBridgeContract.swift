@@ -30,6 +30,17 @@ public enum TodoTrayTestBridgeContract {
     /// 0.1.x predates the field and counts as 1, so the first release to send it still says 1.
     public static let contractVersion = 1
 
+    /// T-2746. `debug` or `release`, from how this package was compiled: a release build that still
+    /// answers `GET /probe` ships a test hook, and `todotray-ui-driver doctor` warns about it.
+    /// Reported as `buildKind`; additive, so the contract number does not change.
+    public static let buildKind: String = {
+        #if DEBUG
+            "debug"
+        #else
+            "release"
+        #endif
+    }()
+
     /// Every probe an adopting app must answer.
     public static let requiredProbeNames = [hermeticLaunchProbeName, resetProbeName]
 

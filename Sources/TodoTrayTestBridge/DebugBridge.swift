@@ -343,7 +343,8 @@ public final class DebugBridge {
         }
         let path = comps.path
         if path == "/probe" || path == "/probes" {
-            return ["ok": true, "probes": probes.keys.sorted(), "contractVersion": TodoTrayTestBridgeContract.contractVersion]
+            return ["ok": true, "probes": probes.keys.sorted(), "contractVersion": TodoTrayTestBridgeContract.contractVersion,
+                    "buildKind": TodoTrayTestBridgeContract.buildKind]
         }
         guard path.hasPrefix(Self.probeRoutePrefix) else {
             return ["ok": false, "error": "unknown path", "path": path]
